@@ -24,9 +24,9 @@ public class ReviewAdapter extends
     private Reviews reviews;
 
 
-    public void setReviewData(List<Reviews> Reviews) {
+    public void ReviewAdapter(List<Reviews> Reviews) {
         mDataset = Reviews;
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
     }
 
 
@@ -59,13 +59,19 @@ public class ReviewAdapter extends
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(ReviewViewHolder holder, final int position) {
+    public void onBindViewHolder(ReviewAdapter.ReviewViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         // Get the data model based on position
 
-        final Reviews review = mDataset.get(position);
-        holder.bindReview(mDataset.get(position));
+        Reviews review = mDataset.get(position);
+        TextView textView = holder.author;
+        textView.setText(review.getmTitle());
+        TextView textViewAgain = holder.content;
+        textViewAgain.setText(review.getmReleaseDate());
+
+        //final Reviews review = mDataset.get(position);
+        //holder.bindReview(mDataset.get(position));
     }
 
     /**
@@ -92,34 +98,27 @@ public class ReviewAdapter extends
     class ReviewViewHolder extends RecyclerView.ViewHolder
             {
 
-//        // each data item is just a string in this case
+        // each data item is just a string in this case
        public TextView content;
        public TextView author;
 
         public ReviewViewHolder(View v) {
             super(v);
 
-            //Article Title textView and set their text
+
            author = (TextView) v.findViewById(R.id.movie_reviews_author);
-           // author.setText(reviews.getmTitle());
-
-
-            //Section Name textView and set their text
            content= (TextView) v.findViewById(R.id.movie_reviews_content);
-           // content.setText(reviews.getmReleaseDate());
 
 
-//            author = v.findViewById(R.id.movie_reviews_author);
 //            //author.setText(reviews.getmTitle());
-//
-//            content = v.findViewById(R.id.movie_reviews_content);
+
 //            //content.setText(reviews.getmReleaseDate());
         }
 
-                void bindReview(Reviews review) {
-                    author.setText(review.getmTitle());
-                    content.setText(review.getmReleaseDate());
-                }
+//                void bindReview(Reviews review) {
+//                    author.setText(review.getmTitle());
+//                    content.setText(review.getmReleaseDate());
+//                }
 
 
     }
@@ -145,12 +144,10 @@ public class ReviewAdapter extends
     public ReviewViewHolder onCreateViewHolder(ViewGroup viewGroup, int
             viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.movie_item_list;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutIdForListItem, viewGroup,
-                shouldAttachToParentImmediately);
+        View view = inflater.inflate(R.layout.movie_item_list, viewGroup,
+                false);
 
         ReviewViewHolder vh = new ReviewViewHolder(view);
         return vh;

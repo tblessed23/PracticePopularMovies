@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     RecyclerView movieReviewsRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ReviewAdapter mReviewAdapter;
-    private List<Reviews> movieReviews;
+    private ArrayList<Reviews> movieReviews;
+
 
 
     /**
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         movieReviewsRecyclerView.setAdapter(mReviewAdapter);
+
     }
 
 
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value.
-        uriBuilder.appendQueryParameter("api_key", "");
+        uriBuilder.appendQueryParameter("api_key", "543e8145fb4bd3a4d9f616fb389b7356");
         uriBuilder.appendQueryParameter("language", "en-US");
         uriBuilder.appendQueryParameter("sort_by", "popularity.desc");
 
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
     @Override
-    public void onLoadFinished(Loader < List < Reviews >> loader, List < Reviews > movies) {
+    public void onLoadFinished(Loader < List < Reviews >> loader, List < Reviews > reviews) {
 
 
         // Clear the adapter of previous movie data
@@ -120,8 +122,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // If there is a valid list of {@link Movies}s, then add them to the adapter's
         // data set. This will trigger the RecyclerView to update.
-        if (movies != null && !movies.isEmpty()) {
-            mReviewAdapter.setReviewData(movies);
+        if (reviews != null && !reviews.isEmpty()) {
+            mReviewAdapter.ReviewAdapter(reviews);
         }
     }
 
