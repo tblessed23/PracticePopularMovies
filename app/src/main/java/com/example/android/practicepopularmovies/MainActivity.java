@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value.
-        uriBuilder.appendQueryParameter("api_key", "543e8145fb4bd3a4d9f616fb389b7356");
+        uriBuilder.appendQueryParameter("api_key", "");
         uriBuilder.appendQueryParameter("language", "en-US");
         uriBuilder.appendQueryParameter("sort_by", "popularity.desc");
 
